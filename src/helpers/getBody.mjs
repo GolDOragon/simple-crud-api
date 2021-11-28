@@ -9,7 +9,13 @@ export function getBody(request, response, next) {
   request.on('end', () => {
     request.body = Buffer.concat(data).toString();
     if (request.headers['content-type'] === 'application/json') {
-      request.body = JSON.parse(request.body);
+      try {
+        request.body = JSON.parse(request.body);
+      } catch {
+        response.statusCode = 500;
+        response.write("Can't parse JSON");
+        response.end();
+      }
     }
 
     // move on to next step in handling response

@@ -8,7 +8,7 @@ export async function getPersons() {
     const persons = await personRepository.getAll();
     return persons;
   } catch (error) {
-    throw new ServiceError(error.message, SERVICE_ERROR_CODES.BAD_REQUEST);
+    throw new ServiceError(error.message, error.code);
   }
 }
 
@@ -21,7 +21,7 @@ export async function getPersonById(id) {
     const person = await personRepository.getOne(id);
     return person;
   } catch (error) {
-    throw new ServiceError(error.message, SERVICE_ERROR_CODES.BAD_REQUEST);
+    throw new ServiceError(error.message, error.code);
   }
 }
 
@@ -39,7 +39,7 @@ export async function createPerson(body) {
     const createdPerson = await personRepository.create(person);
     return createdPerson;
   } catch (error) {
-    throw new ServiceError(error.message, SERVICE_ERROR_CODES.BAD_REQUEST);
+    throw new ServiceError(error.message, error.code);
   }
 }
 
@@ -59,10 +59,20 @@ export async function updatePersonById(id, body) {
     const updatedPerson = await personRepository.updateOne(id, body);
     return updatedPerson;
   } catch (error) {
-    throw new ServiceError(error.message, SERVICE_ERROR_CODES.BAD_REQUEST);
+    throw new ServiceError(error.message, error.code);
   }
 }
 
-export async function deletePerson(id) {
-  return personRepository.deleteOne(id);
+export async function deletePersonById(id) {
+  if (!uuidValidation(id)) {
+    throw new ServiceError('Invalid id', SERVICE_ERROR_CODES.INVALID_ID);
+  }
+
+  try {
+    const deletedPerson = await personRepository.deleteOne(id);
+
+    return deletedPerson;
+  } catch (error) {
+    throw new ServiceError(error.message, error.code);
+  }
 }

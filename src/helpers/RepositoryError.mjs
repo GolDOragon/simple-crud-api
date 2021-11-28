@@ -13,6 +13,6 @@ export class RepositoryError extends Error {
 }
 
 export const REPOSITORY_CODES = {
-  NON_EXIST_ENTITY: 1001,
-  INVALID_ENTITY: 1010,
+  NON_EXIST_ENTITY: 404,
+  INVALID_ENTITY: 400,
 };

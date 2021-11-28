@@ -1,4 +1,5 @@
 import * as personController from '../controllers/personController.mjs';
+import { unknownRouter } from './unknownRouter.mjs';
 
 const isExactPerson = (url) => /^\/person\/?$/.test(url);
 
@@ -22,5 +23,6 @@ export function personRouter(request, response) {
       break;
 
     default:
+      unknownRouter(request, response);
   }
 }

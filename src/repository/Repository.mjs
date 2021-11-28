@@ -45,7 +45,9 @@ export class Repository {
       throw new RepositoryError(`${this.#name} doesn't exist`, REPOSITORY_CODES.NON_EXIST_ENTITY);
     }
 
-    return this.#toResponse(this.#items.splice(index, 1)[0]);
+    const deletedItem = this.#items.splice(index, 1)[0];
+
+    return this.#toResponse(deletedItem);
   }
 
   async updateOne(id, newFields) {

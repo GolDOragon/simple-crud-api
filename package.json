@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "test": "jest",
-    "dev": "nodemon src/index.js -es-module-specifier-resolution=node",
+    "start:dev": "nodemon src/index.js -es-module-specifier-resolution=node",
     "build": "webpack --config ./config/webpack.production.mjs",
     "lint": "eslint . --ext .js --ignore-path .eslintignore --max-warnings 0"
   },

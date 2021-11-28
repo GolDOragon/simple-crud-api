@@ -1,5 +1,11 @@
+import { validate } from 'uuid';
+
+function isPersonRoute(url) {
+  return (url.startsWith('/person/') && validate(url.split('/person/')[1])) || url === '/person';
+}
+
 export function getRouter(url) {
-  if (/^\/person\/?/.test(url)) {
+  if (isPersonRoute(url)) {
     return 'person';
   }
 
