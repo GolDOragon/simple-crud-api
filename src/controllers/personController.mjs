@@ -5,11 +5,13 @@ const SUCCESS_CREATE = 201;
 const SUCCESS_DELETE = 204;
 const SERVER_ERROR = 500;
 
+// TODO: write response builder
+
 export async function getAll(request, response) {
   try {
     const persons = await personService.getPersons();
 
-    response.statusCode = SUCCESS;
+    response.writeHead(SUCCESS, { 'Content-Type': 'application/json' });
     response.write(JSON.stringify(persons));
   } catch (error) {
     response.statusCode = error.code || SERVER_ERROR;
@@ -25,7 +27,7 @@ export async function getById(request, response) {
   try {
     const person = await personService.getPersonById(id);
 
-    response.statusCode = SUCCESS;
+    response.writeHead(SUCCESS, { 'Content-Type': 'application/json' });
     response.write(JSON.stringify(person));
   } catch (error) {
     response.statusCode = error.code || SERVER_ERROR;
@@ -39,7 +41,7 @@ export async function create(request, response) {
   try {
     const person = await personService.createPerson(request.body);
 
-    response.statusCode = SUCCESS_CREATE;
+    response.writeHead(SUCCESS_CREATE, { 'Content-Type': 'application/json' });
     response.write(JSON.stringify(person));
   } catch (error) {
     response.statusCode = error.code || SERVER_ERROR;
@@ -55,7 +57,7 @@ export async function updateById(request, response) {
   try {
     const updatedPerson = await personService.updatePersonById(id, request.body);
 
-    response.statusCode = SUCCESS;
+    response.writeHead(SUCCESS, { 'Content-Type': 'application/json' });
     response.write(JSON.stringify(updatedPerson));
   } catch (error) {
     response.statusCode = error.code || SERVER_ERROR;
@@ -71,7 +73,7 @@ export async function deleteById(request, response) {
   try {
     const deletedPerson = await personService.deletePersonById(id);
 
-    response.statusCode = SUCCESS_DELETE;
+    response.writeHead(SUCCESS_DELETE, { 'Content-Type': 'application/json' });
     response.write(JSON.stringify(deletedPerson));
   } catch (error) {
     response.statusCode = error.code || SERVER_ERROR;
