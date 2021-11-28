@@ -17,6 +17,7 @@ module.exports = {
   rules: {
     'import/extensions': 'off',
     'import/prefer-default-export': 'off',
+    'node/no-unsupported-features/es-syntax': 'off',
   },
   settings: {
     node: {

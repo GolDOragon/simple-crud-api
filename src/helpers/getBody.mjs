@@ -12,7 +12,7 @@ export function getBody(request, response, next) {
       request.body = JSON.parse(request.body);
     }
 
-    // move on to next step in handling respone
+    // move on to next step in handling response
     next(request, response);
   });
 }

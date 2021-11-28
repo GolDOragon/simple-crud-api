@@ -42,9 +42,24 @@ export class Repository {
     const index = this.#items.findIndex((entity) => entity.id === id);
 
     if (index === -1) {
-      throw new RepositoryError(`${this.name} doesn't exist`, REPOSITORY_CODES.NON_EXIST_ENTITY);
+      throw new RepositoryError(`${this.#name} doesn't exist`, REPOSITORY_CODES.NON_EXIST_ENTITY);
     }
 
     return this.#toResponse(this.#items.splice(index, 1)[0]);
+  }
+
+  async updateOne(id, newFields) {
+    const index = this.#items.findIndex((entity) => entity.id === id);
+
+    if (index === -1) {
+      throw new RepositoryError(`${this.#name} doesn't exist`, REPOSITORY_CODES.NON_EXIST_ENTITY);
+    }
+
+    this.#items[index] = {
+      ...this.#items[index],
+      ...newFields,
+    };
+
+    return this.#toResponse(this.#items[index]);
   }
 }

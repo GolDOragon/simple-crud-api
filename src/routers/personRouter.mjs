@@ -17,7 +17,7 @@ export function personRouter(request, response) {
     case 'DELETE':
       personController.deleteById(request, response);
       break;
-    case 'UPDATE':
+    case 'PUT':
       personController.updateById(request, response);
       break;
 

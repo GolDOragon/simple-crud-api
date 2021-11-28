@@ -26,11 +26,38 @@ export async function getPersonById(id) {
 }
 
 export async function createPerson(body) {
+  if (!Person.isValidArgs(body)) {
+    throw new ServiceError(
+      'Required fields are missing or they are invalid',
+      SERVICE_ERROR_CODES.REQUIRED_FIELD,
+    );
+  }
+
   try {
     const person = new Person(body);
 
     const createdPerson = await personRepository.create(person);
     return createdPerson;
+  } catch (error) {
+    throw new ServiceError(error.message, SERVICE_ERROR_CODES.BAD_REQUEST);
+  }
+}
+
+export async function updatePersonById(id, body) {
+  if (!uuidValidation(id)) {
+    throw new ServiceError('Invalid id', SERVICE_ERROR_CODES.INVALID_ID);
+  }
+
+  if (!Person.isValidArgs(body)) {
+    throw new ServiceError(
+      'Required fields are missing or they are invalid',
+      SERVICE_ERROR_CODES.REQUIRED_FIELD,
+    );
+  }
+
+  try {
+    const updatedPerson = await personRepository.updateOne(id, body);
+    return updatedPerson;
   } catch (error) {
     throw new ServiceError(error.message, SERVICE_ERROR_CODES.BAD_REQUEST);
   }
