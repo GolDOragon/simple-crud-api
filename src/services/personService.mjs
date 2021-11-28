@@ -1,11 +1,22 @@
+import { validate as uuidValidation } from 'uuid';
 import { SERVICE_ERROR_CODES, ServiceError } from '../helpers/ServiceError.mjs';
 import { personRepository } from '../repository/personRepository.mjs';
+import { Person } from '../models/Person.mjs';
 
 export async function getPersons() {
-  return personRepository.getAll();
+  try {
+    const persons = await personRepository.getAll();
+    return persons;
+  } catch (error) {
+    throw new ServiceError(error.message, SERVICE_ERROR_CODES.BAD_REQUEST);
+  }
 }
 
-export async function getById(id) {
+export async function getPersonById(id) {
+  if (!uuidValidation(id)) {
+    throw new ServiceError('Invalid id', SERVICE_ERROR_CODES.INVALID_ID);
+  }
+
   try {
     const person = await personRepository.getOne(id);
     return person;
@@ -16,10 +27,9 @@ export async function getById(id) {
 
 export async function createPerson(body) {
   try {
-    const person = {};
+    const person = new Person(body);
 
     const createdPerson = await personRepository.create(person);
-
     return createdPerson;
   } catch (error) {
     throw new ServiceError(error.message, SERVICE_ERROR_CODES.BAD_REQUEST);

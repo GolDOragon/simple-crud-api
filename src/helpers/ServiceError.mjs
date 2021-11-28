@@ -14,4 +14,5 @@ export class ServiceError extends Error {
 
 export const SERVICE_ERROR_CODES = {
   BAD_REQUEST: 400,
+  INVALID_ID: 400,
 };

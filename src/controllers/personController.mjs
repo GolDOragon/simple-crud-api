@@ -20,7 +20,7 @@ export async function getById(request, response) {
   const id = request.url.replace('/person/', '');
 
   try {
-    const person = await personService.getById(id);
+    const person = await personService.getPersonById(id);
 
     response.statusCode = SUCCESS_CODE;
     response.write(JSON.stringify(person));

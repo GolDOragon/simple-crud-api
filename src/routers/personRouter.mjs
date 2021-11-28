@@ -7,9 +7,9 @@ export function personRouter(request, response) {
     case 'GET':
       if (isExactPerson(request.url)) {
         personController.getAll(request, response);
+      } else {
+        personController.getById(request, response);
       }
-
-      personController.getById(request, response);
       break;
     case 'POST':
       personController.create(request, response);
