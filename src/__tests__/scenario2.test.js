@@ -1,6 +1,5 @@
 import request from 'supertest';
 import { server } from '../server.js';
-import { validate as uuidValidate } from 'uuid';
 
 describe('Custom scenario', () => {
   const testPerson = {
