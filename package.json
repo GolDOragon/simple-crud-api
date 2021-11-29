@@ -1,0 +1,60 @@
+{
+  "name": "simple-crud-api",
+  "version": "1.0.0",
+  "description": "RS School task",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "NODE_OPTIONS=--experimental-vm-modules npx jest",
+    "start:dev": "nodemon src/index.js -es-module-specifier-resolution=node",
+    "build": "webpack --config ./config/webpack.production.mjs",
+    "lint": "eslint . --ext .js --ignore-path .eslintignore --max-warnings 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GolDOragon/simple-crud-api.git"
+  },
+  "keywords": [
+    "CRUD",
+    "API",
+    "NODE",
+    "JEST"
+  ],
+  "author": "GolDOragon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GolDOragon/simple-crud-api/issues"
+  },
+  "homepage": "https://github.com/GolDOragon/simple-crud-api#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.16.0",
+    "@babel/core": "^7.16.0",
+    "@babel/preset-env": "^7.16.4",
+    "@types/jest": "^27.0.3",
+    "babel-loader": "^8.2.3",
+    "cross-env": "^7.0.3",
+    "dotenv-webpack": "^7.0.3",
+    "eslint": "^8.3.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-optimize-regex": "^1.2.1",
+    "eslint-plugin-unicorn": "^39.0.0",
+    "jest": "^27.3.1",
+    "nodemon": "^2.0.15",
+    "prettier": "^2.4.1",
+    "supertest": "^6.1.6",
+    "webpack": "^5.64.2",
+    "webpack-cli": "^4.9.1",
+    "webpack-merge": "^5.8.0"
+  },
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "uuid": "^8.3.2"
+  },
+  "nodemonConfig": {
+    "events": {
+      "start": "cls || clear"
+    }
+  }
+}
