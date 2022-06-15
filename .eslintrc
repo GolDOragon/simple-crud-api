@@ -1,0 +1,30 @@
+{
+  "env": {
+    "es2022": true,
+    "node": true
+  },
+  "extends": [
+    "airbnb-typescript/base",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "plugin:eslint-comments/recommended",
+    "plugin:eslint-plugin-import/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json",
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": ["@typescript-eslint"],
+  "rules": {
+    // https://basarat.gitbooks.io/typescript/docs/tips/defaultIsBad.html
+    "import/prefer-default-export": "off",
+    "import/no-default-export": "error",
+    // Not really needed on server side
+    "no-console": "off",
+    // Not a big fan of constant refactoring that will happen after adding/removing 'this' from some random method
+    "class-methods-use-this": "off"
+  }
+}

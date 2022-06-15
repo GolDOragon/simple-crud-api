@@ -1,0 +1,53 @@
+{
+  "name": "scalable-crud-api",
+  "version": "1.0.0",
+  "description": "Simple CRUD API with horizontal scaling and in-memory database",
+  "main": "src/index.ts",
+  "scripts": {
+    "test": "npx jest",
+    "start:dev": "npm run dev",
+    "start:prod": "npm run clean:dist && npm run prod && node ./dist/index.js",
+    "dev": "ts-node src/index.ts",
+    "prod": "npx tsc --outDir 'dist'",
+    "lint": "eslint . --ext .ts --ignore-path .gitignore --max-warnings 0",
+    "clean:dist": "rm -rf ./dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GolDOragon/simple-crud-api.git"
+  },
+  "keywords": [
+    "Node",
+    "API",
+    "TS",
+    "Cluster"
+  ],
+  "author": "GolDOragon <palanevich.aleksey_at_gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GolDOragon/simple-crud-api/issues"
+  },
+  "homepage": "https://github.com/GolDOragon/simple-crud-api#readme",
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "@types/uuid": "^8.3.4",
+    "@typescript-eslint/eslint-plugin": "^5.28.0",
+    "@typescript-eslint/parser": "^5.28.0",
+    "cross-env": "^7.0.3",
+    "eslint": "^8.17.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-airbnb-typescript": "^17.0.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-eslint-comments": "^3.2.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "jest": "^28.1.1",
+    "prettier": "^2.7.0",
+    "supertest": "^6.2.3",
+    "ts-node": "^10.8.1",
+    "typescript": "^4.7.3"
+  }
+}
