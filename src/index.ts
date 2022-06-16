@@ -1,7 +1,8 @@
+import { server } from './server';
 import 'dotenv/config';
 
-import { generateUUID } from './utils/uuid';
+const PORT = process.env.PORT || 3000;
 
-console.log(`Hello! Try to listen ${process.env.PORT || ''}!`);
-
-console.log(generateUUID());
+server.listen(PORT, () => {
+  console.log(`Server has started on ${PORT} port!`);
+});

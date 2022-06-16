@@ -26,6 +26,7 @@
     "no-console": "off",
     // Not a big fan of constant refactoring that will happen after adding/removing 'this' from some random method
     "class-methods-use-this": "off",
+    "@typescript-eslint/no-misused-promises": "off",
     "import/order": [
       "error",
       {
