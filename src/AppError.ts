@@ -1,7 +1,9 @@
-export class AppError extends Error {
-  code: number;
+import { STATUS_CODE } from './utils/constants';
 
-  constructor({ name, code, message }: { name: string; code: number; message: string }) {
+export class AppError extends Error {
+  code: STATUS_CODE;
+
+  constructor({ name, code, message }: { name: string; code: STATUS_CODE; message: string }) {
     super(message);
 
     this.name = name;

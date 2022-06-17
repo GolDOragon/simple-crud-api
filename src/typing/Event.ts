@@ -8,8 +8,3 @@ export enum EventMethods {
 export enum EventRoutes {
   USERS = 'USERS',
 }
-
-export type Event = {
-  method: EventMethods;
-  route: EventRoutes;
-};
