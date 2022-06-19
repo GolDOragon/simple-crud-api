@@ -4,14 +4,13 @@
   "description": "Simple CRUD API with horizontal scaling and in-memory database",
   "main": "src/index.ts",
   "scripts": {
+    "start:dev": "nodemon src/index.ts",
+    "start:prod": "npm run clean:dist && npm run build && node ./dist/index.js",
+    "start:multi": "npm run clean:dist && npm run build && node ./dist/multi.js",
     "test": "npx jest",
-    "dev": "nodemon src/index.ts",
-    "prod": "npx tsc --outDir 'dist'",
-    "lint": "eslint . --ext .ts --ignore-path .gitignore --max-warnings 0 --fix",
     "clean:dist": "rm -rf ./dist",
-    "start:dev": "npm run dev",
-    "start:prod": "npm run clean:dist && npm run prod && node ./dist/index.js",
-    "start:multi": "npm run clean:dist && npm run prod && node ./dist/multi.js"
+    "build": "npx tsc --outDir 'dist'",
+    "lint": "eslint . --ext .ts --ignore-path .gitignore --max-warnings 0 --fix"
   },
   "repository": {
     "type": "git",
