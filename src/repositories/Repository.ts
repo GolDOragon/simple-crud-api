@@ -1,5 +1,5 @@
 import { BaseEntity } from '../models/BaseEntity';
-import { IClass } from '../typing/Interfaces';
+import { IClass } from '../types/Interfaces';
 import { STATUS_CODE } from '../utils/constants';
 import { RepositoryError } from './RepositoryError';
 

@@ -1,6 +1,6 @@
 import { UserService } from '../services/UserService';
-import { EventMethods, EventRoutes } from '../typing/Event';
-import { IController } from '../typing/Interfaces';
+import { EventMethods, EventRoutes } from '../types/Event';
+import { IController } from '../types/Interfaces';
 import { STATUS_CODE } from '../utils/constants';
 import { getId, isValidId } from '../utils/UUID';
 import { withEventName } from '../utils/withEventName';

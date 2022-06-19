@@ -1,7 +1,7 @@
 import { IncomingMessage, ServerResponse } from 'http';
 
 import { AppError } from '../AppError';
-import { IController, IHandler } from '../typing/Interfaces';
+import { IController, IHandler } from '../types/Interfaces';
 import { HEADERS, STATUS_CODE } from './constants';
 
 const withResponseBuilder = (getResult: IController): IHandler => {

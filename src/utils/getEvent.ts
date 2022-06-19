@@ -1,6 +1,6 @@
 import { IncomingMessage, ServerResponse } from 'http';
 
-import { EventMethods, EventRoutes } from '../typing/Event';
+import { EventMethods, EventRoutes } from '../types/Event';
 import { HEADERS, STATUS_CODE } from './constants';
 
 const AVAILABLE_ROUTES = Object.values(EventRoutes);
