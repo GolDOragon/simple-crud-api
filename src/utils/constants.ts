@@ -21,4 +21,5 @@ export enum ERROR_MESSAGES {
   SERVER_ERROR = 'Unknown error',
   UNKNOWN_ROUTE = 'Unknown route',
   UNKNOWN_METHOD = 'Unknown method',
+  BAD_JSON = 'Bad JSON.',
 }

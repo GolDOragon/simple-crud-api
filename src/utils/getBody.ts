@@ -1,6 +1,6 @@
 import { IncomingMessage, ServerResponse } from 'http';
 
-import { HEADERS, STATUS_CODE } from './constants';
+import { ERROR_MESSAGES, HEADERS, STATUS_CODE } from './constants';
 
 export const getBody = (
   request: IncomingMessage,
@@ -22,7 +22,7 @@ export const getBody = (
         );
       } catch {
         response.writeHead(STATUS_CODE.BAD_REQUEST, HEADERS.TEXT);
-        response.end('Bad JSON');
+        response.end(ERROR_MESSAGES.BAD_JSON);
       }
     });
   });
