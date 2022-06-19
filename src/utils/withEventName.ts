@@ -2,7 +2,7 @@ import { IncomingMessage, ServerResponse } from 'http';
 
 import { AppError } from '../AppError';
 import { IController, IHandler } from '../types/Interfaces';
-import { HEADERS, STATUS_CODE } from './constants';
+import { ERROR_MESSAGES, HEADERS, STATUS_CODE } from './constants';
 
 const withResponseBuilder = (getResult: IController): IHandler => {
   return async function (
@@ -17,7 +17,7 @@ const withResponseBuilder = (getResult: IController): IHandler => {
       res.end(JSON.stringify(responseBody));
     } catch (error) {
       res.statusCode = error instanceof AppError ? error.code : STATUS_CODE.INTERNAL_SERVER_ERROR;
-      res.end(error instanceof Error ? error.message : error);
+      res.end(error instanceof AppError ? error.message : ERROR_MESSAGES.SERVER_ERROR);
     }
   };
 };

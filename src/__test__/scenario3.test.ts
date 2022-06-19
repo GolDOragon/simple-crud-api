@@ -34,6 +34,6 @@ describe('E2E Custom scenario', () => {
     const response = await request(server).del(`/users/${userId}`);
 
     expect(response.status).toBe(404);
-    expect(response.text).toBe(`Entity doesn't exist`);
+    expect(response.text).toBe(`Entity doesn't exist.`);
   });
 });

@@ -1,7 +1,7 @@
 import { UserService } from '../services/UserService';
 import { EventMethods, EventRoutes } from '../types/Event';
 import { IController } from '../types/Interfaces';
-import { STATUS_CODE } from '../utils/constants';
+import { ERROR_MESSAGES, STATUS_CODE } from '../utils/constants';
 import { getId, isValidId } from '../utils/UUID';
 import { withEventName } from '../utils/withEventName';
 import { ControllerError } from './ControllerError';
@@ -12,7 +12,7 @@ const getController: IController = async (req) => {
   const id = getId(req.url);
 
   if (id && !isValidId(id)) {
-    throw new ControllerError(STATUS_CODE.BAD_REQUEST, 'Invalid id');
+    throw new ControllerError(STATUS_CODE.BAD_REQUEST, ERROR_MESSAGES.INVALID_ID);
   }
 
   const responseBody = id ? await userService.getUser(id) : await userService.getUsers();
@@ -40,7 +40,7 @@ const putController: IController = async (req, res, parsedBody) => {
   const id = getId(req.url);
 
   if (!id || !isValidId(id)) {
-    throw new ControllerError(STATUS_CODE.BAD_REQUEST, 'Invalid id');
+    throw new ControllerError(STATUS_CODE.BAD_REQUEST, ERROR_MESSAGES.INVALID_ID);
   }
 
   const responseBody = await userService.updateUser(id, parsedBody);
@@ -57,7 +57,7 @@ const deleteController: IController = async (req) => {
   const id = getId(req.url);
 
   if (!id || !isValidId(id)) {
-    throw new ControllerError(STATUS_CODE.BAD_REQUEST, 'Invalid id');
+    throw new ControllerError(STATUS_CODE.BAD_REQUEST, ERROR_MESSAGES.INVALID_ID);
   }
 
   const responseBody = await userService.deleteUser(id);

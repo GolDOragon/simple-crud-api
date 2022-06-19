@@ -1,7 +1,7 @@
 import { IncomingMessage, ServerResponse } from 'http';
 
 import { EventMethods, EventRoutes } from '../types/Event';
-import { HEADERS, STATUS_CODE } from './constants';
+import { ERROR_MESSAGES, HEADERS, STATUS_CODE } from './constants';
 
 const AVAILABLE_ROUTES = Object.values(EventRoutes);
 const isAvailableRoute = (route?: string): route is EventRoutes => {
@@ -23,13 +23,13 @@ export const getEvent = (req: IncomingMessage, res: ServerResponse): string | un
   const route = req.url?.split('/')[1]?.toUpperCase();
 
   if (!isAvailableRoute(route)) {
-    return endConnection('unknownRoute', res);
+    return endConnection(ERROR_MESSAGES.UNKNOWN_ROUTE, res);
   }
 
   const method = req.method?.toUpperCase();
 
   if (!isAvailableMethod(method)) {
-    return endConnection('unknownMethod', res);
+    return endConnection(ERROR_MESSAGES.UNKNOWN_METHOD, res);
   }
 
   return `${route}:${method}`;

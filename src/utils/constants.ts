@@ -13,4 +13,12 @@ export enum STATUS_CODE {
   INTERNAL_SERVER_ERROR = 500,
 }
 
-export const ERROR_MESSAGES = {};
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export enum ERROR_MESSAGES {
+  INVALID_ID = 'Invalid id.',
+  ENTITY_NOT_EXIST = "Entity doesn't exist.",
+  INVALID_FIELDS = 'Invalid fields.',
+  SERVER_ERROR = 'Unknown error',
+  UNKNOWN_ROUTE = 'Unknown route',
+  UNKNOWN_METHOD = 'Unknown method',
+}

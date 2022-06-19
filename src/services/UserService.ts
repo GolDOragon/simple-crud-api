@@ -1,7 +1,7 @@
 import { User } from '../models/UserModel';
 import { Repository } from '../repositories/Repository';
 import { userRepository } from '../repositories/UserRepository';
-import { STATUS_CODE } from '../utils/constants';
+import { ERROR_MESSAGES, STATUS_CODE } from '../utils/constants';
 import { ServiceError } from './ServiceError';
 
 export class UserService {
@@ -19,7 +19,7 @@ export class UserService {
     const user = await this.userRepository.getOne(id);
 
     if (!user) {
-      throw new ServiceError(STATUS_CODE.NOT_FOUND, "Entity doesn't exist");
+      throw new ServiceError(STATUS_CODE.NOT_FOUND, ERROR_MESSAGES.ENTITY_NOT_EXIST);
     }
 
     return user;
@@ -27,7 +27,7 @@ export class UserService {
 
   async createUser(userFields: Record<string, unknown>) {
     if (!this.isValidUser(userFields)) {
-      throw new ServiceError(STATUS_CODE.BAD_REQUEST, 'Invalid fields');
+      throw new ServiceError(STATUS_CODE.BAD_REQUEST, ERROR_MESSAGES.INVALID_FIELDS);
     }
 
     return this.userRepository.create(userFields);
@@ -41,7 +41,7 @@ export class UserService {
     const oldUser = await this.userRepository.getOne(id);
 
     if (!oldUser) {
-      throw new ServiceError(STATUS_CODE.NOT_FOUND, "Entity doesn't exist");
+      throw new ServiceError(STATUS_CODE.NOT_FOUND, ERROR_MESSAGES.ENTITY_NOT_EXIST);
     }
 
     const updatedUser = {
@@ -50,7 +50,7 @@ export class UserService {
     };
 
     if (!this.isValidUser(updatedUser)) {
-      throw new ServiceError(STATUS_CODE.BAD_REQUEST, 'Invalid fields');
+      throw new ServiceError(STATUS_CODE.BAD_REQUEST, ERROR_MESSAGES.INVALID_FIELDS);
     }
 
     return this.userRepository.update(id, updatedUser);

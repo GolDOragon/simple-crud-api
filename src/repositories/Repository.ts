@@ -1,6 +1,6 @@
 import { BaseEntity } from '../models/BaseEntity';
 import { IClass } from '../types/Interfaces';
-import { STATUS_CODE } from '../utils/constants';
+import { ERROR_MESSAGES, STATUS_CODE } from '../utils/constants';
 import { RepositoryError } from './RepositoryError';
 
 export class Repository<TEntity extends BaseEntity> {
@@ -33,7 +33,7 @@ export class Repository<TEntity extends BaseEntity> {
     const entity = this.items[index];
 
     if (!entity) {
-      throw new RepositoryError(STATUS_CODE.NOT_FOUND, "Entity doesn't exist");
+      throw new RepositoryError(STATUS_CODE.NOT_FOUND, ERROR_MESSAGES.ENTITY_NOT_EXIST);
     }
 
     this.items[index] = {
@@ -50,7 +50,7 @@ export class Repository<TEntity extends BaseEntity> {
     const entity = this.items[index];
 
     if (!entity) {
-      throw new RepositoryError(STATUS_CODE.NOT_FOUND, "Entity doesn't exist");
+      throw new RepositoryError(STATUS_CODE.NOT_FOUND, ERROR_MESSAGES.ENTITY_NOT_EXIST);
     }
 
     this.items = this.items.filter((item) => item.id !== id);
