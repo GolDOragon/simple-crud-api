@@ -5,12 +5,13 @@
   "main": "src/index.ts",
   "scripts": {
     "test": "npx jest",
-    "start:dev": "npm run dev",
-    "start:prod": "npm run clean:dist && npm run prod && node ./dist/index.js",
     "dev": "nodemon src/index.ts",
     "prod": "npx tsc --outDir 'dist'",
     "lint": "eslint . --ext .ts --ignore-path .gitignore --max-warnings 0 --fix",
-    "clean:dist": "rm -rf ./dist"
+    "clean:dist": "rm -rf ./dist",
+    "start:dev": "npm run dev",
+    "start:prod": "npm run clean:dist && npm run prod && node ./dist/index.js",
+    "start:multi": "npm run clean:dist && npm run prod && node ./dist/multi.js"
   },
   "repository": {
     "type": "git",
