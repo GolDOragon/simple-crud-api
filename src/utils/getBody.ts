@@ -20,7 +20,7 @@ export const getBody = (
             ? (JSON.parse(raw) as Record<string, unknown>)
             : {},
         );
-      } catch (err) {
+      } catch {
         response.writeHead(STATUS_CODE.BAD_REQUEST, HEADERS.TEXT);
         response.end('Bad JSON');
       }

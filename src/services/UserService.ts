@@ -16,7 +16,13 @@ export class UserService {
   }
 
   async getUser(id: string) {
-    return this.userRepository.getOne(id);
+    const user = await this.userRepository.getOne(id);
+
+    if (!user) {
+      throw new ServiceError(STATUS_CODE.NOT_FOUND, "Entity doesn't exist");
+    }
+
+    return user;
   }
 
   async createUser(userFields: Record<string, unknown>) {
@@ -35,7 +41,7 @@ export class UserService {
     const oldUser = await this.userRepository.getOne(id);
 
     if (!oldUser) {
-      throw new ServiceError(STATUS_CODE.BAD_REQUEST, "Entity doesn't exist");
+      throw new ServiceError(STATUS_CODE.NOT_FOUND, "Entity doesn't exist");
     }
 
     const updatedUser = {
