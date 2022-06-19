@@ -1,6 +1,6 @@
 import { BaseEntity } from './BaseEntity';
 
-type UserFields = {
+export type UserFields = {
   username: string;
   age: number;
   hobbies: string[];
